@@ -12,13 +12,6 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text(
-            "Lecket",
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
         body: HomeContentScreen(),
       ),
       onWillPop: () async {
