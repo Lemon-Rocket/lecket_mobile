@@ -72,7 +72,9 @@ class LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("¿No tienes cuenta? "),
+                      Text(
+                        "¿No tienes cuenta? ",
+                      ),
                       Text(
                         "Registrate",
                         style: TextStyle(

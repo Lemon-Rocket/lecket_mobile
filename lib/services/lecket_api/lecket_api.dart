@@ -32,7 +32,7 @@ class LecketApi {
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body) as T;
-        return Right(jsonResponse);
+        //return Right(jsonResponse);
       } else {
         return Left(ServerStatusFailure(statusCode: response.statusCode));
       }
