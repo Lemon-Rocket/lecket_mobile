@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 class InputPrimary extends StatelessWidget {
   final String label;
   final bool obscureText;
+  final Function(String) onChanged;
 
-  const InputPrimary({@required this.label, this.obscureText = false});
+  const InputPrimary({
+    @required this.label,
+    @required this.onChanged,
+    this.obscureText = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,7 @@ class InputPrimary extends StatelessWidget {
         TextField(
           obscureText: obscureText,
           cursorColor: Colors.black,
+          onChanged: onChanged,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
               vertical: 0,

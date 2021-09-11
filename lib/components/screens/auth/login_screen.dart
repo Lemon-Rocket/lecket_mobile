@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lecket_mobile/blocs/login/login_bloc.dart';
+import 'package:lecket_mobile/components/screens/dashboard/dashboard_screen.dart';
 import 'package:lecket_mobile/components/widgets/fade_animation.dart';
+import 'package:lecket_mobile/components/widgets/loading_indicator.dart';
 import 'package:lecket_mobile/components/widgets/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -9,8 +13,38 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  String email;
+  String password;
+  String errorMessage = "";
+
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<LoginBloc, LoginBlocState>(
+      listener: (BuildContext context, state) {
+        if (state is LoginSuccess) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (_) => DashboardScreen(),
+            ),
+            ModalRoute.withName('/'),
+          );
+        } else if (state is LoginFailure) {
+          setState(() {
+            errorMessage = state.message;
+          });
+        }
+      },
+      builder: (BuildContext context, state) {
+        if (state is LoginInProgress) {
+          return LoadingIndicator();
+        } else {
+          return buildBody(context);
+        }
+      },
+    );
+  }
+
+  Widget buildBody(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
@@ -44,6 +78,9 @@ class LoginScreenState extends State<LoginScreen> {
                         1.2,
                         InputPrimary(
                           label: "Email",
+                          onChanged: (value) {
+                            email = value;
+                          },
                         ),
                       ),
                       _handlerSize(),
@@ -52,6 +89,9 @@ class LoginScreenState extends State<LoginScreen> {
                         InputPrimary(
                           label: "Contraseña",
                           obscureText: true,
+                          onChanged: (value) {
+                            password = value;
+                          },
                         ),
                       ),
                       _handlerSize(),
@@ -64,6 +104,14 @@ class LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: ButtonPrimary(
                       text: "Iniciar sesion",
+                      onPressed: () {
+                        BlocProvider.of<LoginBloc>(context).add(
+                          LoginStarted(
+                            email: email,
+                            password: password,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -79,7 +127,7 @@ class LoginScreenState extends State<LoginScreen> {
                         "Registrate",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontSize: 16,
                         ),
                       ),
                     ],
