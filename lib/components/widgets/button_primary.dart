@@ -15,15 +15,19 @@ class ButtonPrimary extends StatelessWidget {
         border: Border(
           bottom: BorderSide(
             color: Colors.black,
+            width: 1.5,
           ),
           top: BorderSide(
             color: Colors.black,
+            width: 1.5,
           ),
           left: BorderSide(
             color: Colors.black,
+            width: 1.5,
           ),
           right: BorderSide(
             color: Colors.black,
+            width: 1.5,
           ),
         ),
       ),
@@ -41,6 +45,7 @@ class ButtonPrimary extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 18,
+            fontFamily: "Poppins",
           ),
         ),
       ),

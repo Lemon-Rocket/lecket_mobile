@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lecket_mobile/blocs/login/login_bloc.dart';
 import 'package:lecket_mobile/components/screens/dashboard/dashboard_screen.dart';
-import 'package:lecket_mobile/components/widgets/fade_animation.dart';
+// import 'package:lecket_mobile/components/widgets/fade_animation.dart';
 import 'package:lecket_mobile/components/widgets/loading_indicator.dart';
 import 'package:lecket_mobile/components/widgets/widgets.dart';
 
@@ -62,10 +62,11 @@ class LoginScreenState extends State<LoginScreen> {
                     FadeAnimation(
                       1,
                       Text(
-                        "Iniciar Sesion",
+                        "Iniciar Sesión",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 35,
                           fontWeight: FontWeight.bold,
+                          fontFamily: "Poppins",
                         ),
                       ),
                     ),
@@ -98,7 +99,7 @@ class LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: ButtonPrimary(
-                      text: "Iniciar sesion",
+                      text: "Iniciar Sesión",
                       onPressed: () {
                         BlocProvider.of<LoginBloc>(context).add(
                           LoginStarted(
@@ -117,12 +118,16 @@ class LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       Text(
                         "¿No tienes cuenta? ",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                        ),
                       ),
                       Text(
                         "Registrate",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
+                          fontFamily: "Poppins",
                         ),
                       ),
                     ],
@@ -153,6 +158,7 @@ class LoginScreenState extends State<LoginScreen> {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w400,
+              fontFamily: "Poppins",
               color: Colors.black87,
             ),
           ),
