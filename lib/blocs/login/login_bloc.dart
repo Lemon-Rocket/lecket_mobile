@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:meta/meta.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
@@ -17,7 +18,7 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
   final AuthenticationService auth;
-  LoginBloc({this.auth}) : super(LoginBlocInitial());
+  LoginBloc({@required this.auth}) : super(LoginBlocInitial());
 
   @override
   Stream<LoginBlocState> mapEventToState(

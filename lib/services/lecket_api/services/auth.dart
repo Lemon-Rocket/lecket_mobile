@@ -21,8 +21,8 @@ class AuthenticationServiceImpl implements AuthenticationService {
   @override
   Future<Either<Failure, AuthenticationResponse>> loginUser(
       Map<String, dynamic> body) async {
-    final response =
-        await client.post<Map<String, dynamic>>(url: '/', body: body);
+    final response = await client.post<Map<String, dynamic>>(
+        url: '/users/login', body: body);
     return response.map((r) => AuthenticationResponse.fromJson(r));
   }
 

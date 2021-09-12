@@ -16,6 +16,7 @@ class LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
   String errorMessage = "";
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +87,7 @@ class LoginScreenState extends State<LoginScreen> {
                       _handlerSize(),
                       FadeAnimation(
                         1.3,
-                        InputPrimary(
-                          label: "Contraseña",
-                          obscureText: true,
-                          onChanged: (value) {
-                            password = value;
-                          },
-                        ),
+                        _handlerPasswordInput(),
                       ),
                       _handlerSize(),
                     ],
@@ -144,6 +139,63 @@ class LoginScreenState extends State<LoginScreen> {
   Widget _handlerSize() {
     return SizedBox(
       height: 20,
+    );
+  }
+
+  Widget _handlerPasswordInput() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 15),
+          child: Text(
+            "Contraseña",
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        TextField(
+          obscureText: obscureText,
+          cursorColor: Colors.black,
+          onChanged: (value) => password = value,
+          decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: obscureText
+                  ? Icon(Icons.visibility)
+                  : Icon(Icons.visibility_off),
+              onPressed: () {
+                setState(
+                  () {
+                    obscureText = !obscureText;
+                  },
+                );
+              },
+            ),
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 15,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: Colors.black,
+              ),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: Colors.grey[400],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

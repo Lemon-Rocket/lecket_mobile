@@ -30,7 +30,7 @@ class ButtonPrimary extends StatelessWidget {
       child: MaterialButton(
         minWidth: double.infinity,
         height: 60,
-        onPressed: () => onPressed,
+        onPressed: onPressed,
         color: Color.fromRGBO(255, 209, 92, 1),
         elevation: 0,
         shape: RoundedRectangleBorder(
